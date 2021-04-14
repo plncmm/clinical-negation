@@ -7,8 +7,8 @@ rfile = open(r'negex_triggers_es.txt')
 irules = negex.sortRules(rfile.readlines())
 
 @app.get("/detector")
-async def negation(s: str, p: str):  
-    tagger = negex.negTagger(sentence = s, phrases = [p], rules = irules, negP=False)
+async def negation(c: str, p: str):  
+    tagger = negex.negTagger(sentence = c, phrases = [p], rules = irules, negP=False)
     negated = True if tagger.getNegationFlag() == "negated" else False
     response = {
         "negated" : negated
